@@ -1,16 +1,3 @@
 
-*.meta
-*.png
-*.unity
-*.mp3
-*.prefab
-*.cs
-*.pdf
-*.txt
-*.ttf
-*.mat
-*.asset
-*.shader
-*.cginc
-*.json
+
 /CGEPrototype1
