@@ -3,21 +3,26 @@ using UnityEngine;
 public class PlatformerPlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float jumpForce = 7f;
+    public float jumpForce = 3f;
     public LayerMask groundLayer;
     public Transform groundCheck;
     public float groundCheckRadius = 0.2f;
-    public AudioClip jumpSound;
+    private bool isGrounded;
 
     private Rigidbody2D rb;
-    private AudioSource playerAudio;
-    private bool isGrounded;
     private float horizontalInput;
 
+    public AudioClip jumpSound;
+    private AudioSource playerAudio;
+
+    private Animator animator; 
+
+  
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         playerAudio = GetComponent<AudioSource>(); // Initialize playerAudio
+        animator = GetComponent<Animator>(); 
 
         if (groundCheck == null)
         {
@@ -42,8 +47,17 @@ public class PlatformerPlayerController : MonoBehaviour
         // Move the player horizontally
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
+        //set animator parameter xVelocityAbs to absolute value of x velocity
+        animator.SetFloat("xVelocityAbs", Mathf.Abs(rb.velocity.x));
+        
+        //set animator parameter yVelocity to y velocity
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
         // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+
+        //set animator parameter onGround to isGrounded
+        animator.SetBool("onGround", isGrounded);
 
         // Flip the player's sprite based on movement direction
         if (horizontalInput > 0)
