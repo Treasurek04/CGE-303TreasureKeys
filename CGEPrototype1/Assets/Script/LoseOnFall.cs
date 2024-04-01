@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoseOnFall : MonoBehaviour
 {
-    public float lowestY; 
+    public float lowestY; // Y-axis threshold for triggering loss
 
-    // Update is called once per frame
     void Update()
     {
-       if (transform.position.y < lowestY)
+        // Check if the GameObject falls below the threshold
+        if (transform.position.y <= lowestY)
         {
+            // Trigger a loss
             ScoreManager.gameOver = true;
-        } 
+        }
     }
 }

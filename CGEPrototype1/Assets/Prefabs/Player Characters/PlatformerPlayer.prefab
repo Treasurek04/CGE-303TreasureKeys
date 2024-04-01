@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 601294299853212272}
   - component: {fileID: 601294299853212275}
   - component: {fileID: 601294299853212274}
-  - component: {fileID: 601294299853212237}
   - component: {fileID: 502072357}
   - component: {fileID: 502072351}
   m_Layer: 0
@@ -146,19 +145,6 @@ MonoBehaviour:
   groundCheck: {fileID: 601294300124280526}
   groundCheckRadius: 0.2
   jumpSound: {fileID: 8300000, guid: 9fc6b3d71a00b494ab94465ed37e7f04, type: 3}
---- !u!114 &601294299853212237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 601294299853212236}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d79b4f00c62575d408396c0288caba52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lowestY: -5
 --- !u!82 &502072357
 AudioSource:
   m_ObjectHideFlags: 0

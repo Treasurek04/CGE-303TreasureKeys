@@ -10,8 +10,8 @@ public class ScoreManager : MonoBehaviour
     public static bool won;
     public static int score;
 
-
     public TMP_Text textbox;
+
     public int scoreToWin;
 
     void Start()
@@ -20,34 +20,32 @@ public class ScoreManager : MonoBehaviour
         won = false;
         score = 0;
     }
+
     void Update()
     {
         if (!gameOver)
         {
-            textbox.text = "Cherries: " + score;
-        }
-        if(score>=scoreToWin)
-        {
-            won = true;
-            gameOver = true;
-        }
-        if (gameOver)
-        {
-            if (won)
             {
-                textbox.text = "You Win! \n Press R to play again";
-
+                textbox.text = "Cherries: " + score;
             }
-            else
+           
+            if (score >= scoreToWin)
             {
-                textbox.text = "You lose! \n Press R to try again";
+                GameOver(true);
             }
-
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 
+    void GameOver(bool result)
+    {
+        won = result;
+        gameOver = true;
+    }
 }
