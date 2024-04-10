@@ -62,11 +62,11 @@ public class PlatformerPlayerController : MonoBehaviour
         // Flip the player's sprite based on movement direction
         if (horizontalInput > 0)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f); //Facing right
+            transform.rotation = Quaternion.Euler(0,0,0); //Facing right
         }
         else if (horizontalInput < 0)
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f); //Facing left
+            transform.rotation = Quaternion.Euler(0, 180, 0); //Facing left
         }
     }
 
