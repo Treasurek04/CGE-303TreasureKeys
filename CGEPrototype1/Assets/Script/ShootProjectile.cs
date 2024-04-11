@@ -22,7 +22,8 @@ public class ShootProjectile : MonoBehaviour
 
         void Shoot()
         {
-            //GameObject fireProjectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+           // GameObject fireProjectile = 
+                Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             
             //Destroy(firedProjectile, 3f); 
         
