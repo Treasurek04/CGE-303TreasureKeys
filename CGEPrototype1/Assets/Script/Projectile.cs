@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 
         if(hitInfo.gameObject.tag != "Player")
         {
-            Destroy(getObject);
+            Destroy(gameObject);
         }
     }
 }
