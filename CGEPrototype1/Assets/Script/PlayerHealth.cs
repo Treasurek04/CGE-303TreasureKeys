@@ -25,10 +25,14 @@ public class PlayerHealth : MonoBehaviour
 
     public AudioClip playerDeathSound;
 
+    private Animator animator;
+
 
     void Start ()
     {
         playerAudio = GetComponent<AudioSource>();
+
+        animator = GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -70,6 +74,8 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(hitRecoveryTime);
 
         hitRecently = false;
+
+        animator.SetBool("hit", false);
     }
 
     public void TakeDamage(int damage)
@@ -85,7 +91,12 @@ public class PlayerHealth : MonoBehaviour
 
         else
         {
-            playerAudio.PlayOneShot(playerHitSound);
+            if (playerAudio != null && playerAudio.enabled && playerHitSound != null)
+            {
+                playerAudio.PlayOneShot(playerHitSound);
+            }
+
+            animator.SetBool("hit", true);
         }
     }
 
@@ -93,12 +104,15 @@ public class PlayerHealth : MonoBehaviour
     {
         ScoreManager.gameOver = true;
 
-        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
-
-        Destroy(deathEffect, 2f); 
-
         gameObject.SetActive(false);
 
-        playerAudio.PlayOneShot(playerDeathSound);
+        if (playerAudio != null && playerAudio.enabled && playerDeathSound != null)
+        {
+            playerAudio.PlayOneShot(playerDeathSound);
+        }
+
+        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
+
+        Destroy(deathEffect, 2f);
     }
 }

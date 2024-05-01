@@ -5203,6 +5203,8 @@ MonoBehaviour:
   knockbackForce: 5
   playerDeathEffect: {fileID: 5274207435858435520, guid: 785719e6876d9d440a0302ca76637ad1, type: 3}
   hitRecoveryTime: 0.2
+  playerHitSound: {fileID: 8300000, guid: f8e5e9e3d68cbde43a2dabf411725f1b, type: 3}
+  playerDeathSound: {fileID: 8300000, guid: d6595da95c6f643438e223eceb890e77, type: 3}
 --- !u!1001 &554899793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7483,8 +7485,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 13, y: 424}
-  m_SizeDelta: {x: 697.7007, y: 169.7002}
+  m_AnchoredPosition: {x: 23.2452, y: 311}
+  m_SizeDelta: {x: 729.7764, y: 169.7002}
   m_Pivot: {x: 0.31940663, y: 0.8341193}
 --- !u!114 &1876437703
 MonoBehaviour:

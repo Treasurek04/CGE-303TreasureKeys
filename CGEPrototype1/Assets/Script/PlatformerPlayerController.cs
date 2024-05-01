@@ -75,7 +75,6 @@ public class PlatformerPlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0); //Facing left
         }
     }
-    private bool hasJumped = false; 
 
     void Jump()
     {
