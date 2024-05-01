@@ -28,6 +28,12 @@ public class PlatformerPlayerController : MonoBehaviour
         {
             Debug.LogError("GroundCheck not assigned to the player controller!");
         }
+
+        if (playerAudio != null && playerAudio.clip == jumpSound && playerAudio.isPlaying)
+        {
+            playerAudio.Stop();
+        }
+
     }
 
     void Update()
@@ -69,16 +75,21 @@ public class PlatformerPlayerController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0); //Facing left
         }
     }
+    private bool hasJumped = false; 
 
     void Jump()
     {
-        // Apply jump force
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-
-        // Play jump sound
-        if (playerAudio && jumpSound)
+        if (!hasJumped && isGrounded)
         {
-            playerAudio.PlayOneShot(jumpSound, 1.0f); // Play jump sound with volume 1.0f
+            // Apply jump force
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+
+            // Play jump sound
+            if (playerAudio && jumpSound)
+            {
+                playerAudio.PlayOneShot(jumpSound, 1.0f); // Play jump sound with volume 1.0f
+            }
+            hasJumped = true; 
         }
     }
 }

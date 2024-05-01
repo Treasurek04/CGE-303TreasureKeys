@@ -7,13 +7,18 @@ public class ScoreTriggerZone : MonoBehaviour
     public AudioClip triggerSound; // Sound to play when trigger is hit
     private AudioSource audioSource;
 
-    // You may not need this variable if you don't plan to prevent multiple score increments
     bool active = true;
 
     private void Start()
     {
         // Get the AudioSource component attached to the same GameObject
         audioSource = GetComponent<AudioSource>();
+
+        // Check if the audioSource is playing the coin sound and stop it
+        if (audioSource != null && audioSource.clip == triggerSound && audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,9 +43,7 @@ public class ScoreTriggerZone : MonoBehaviour
         if (collision.CompareTag("Cherry"))
         {
             // Destroy the trigger zone GameObject
-            Destroy(gameObject); // Or use: gameObject.SetActive(false);
+            Destroy(gameObject); 
         }
     }
 }
-
-
