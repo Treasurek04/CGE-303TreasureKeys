@@ -8,7 +8,9 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
 
-    private DisplayBar healthBar; 
+    private DisplayBar healthBar;
+
+    public int damage = 10; 
 
     private void Start()
     {
@@ -40,5 +42,24 @@ public class Enemy : MonoBehaviour
         Instantiate(deathEffect, transform.position, Quaternion.identity);
 
         Destroy(gameObject); 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        
+            if(playerHealth == null)
+            {
+                Debug.LogError("PlayerHealth script not found on player");
+                return;
+            }
+
+            playerHealth.TakeDamage(damage);
+
+            playerHealth.Knockback(transform.position);
+        }
+
     }
 }
