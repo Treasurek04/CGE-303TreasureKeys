@@ -17,10 +17,19 @@ public class PlayerHealth : MonoBehaviour
 
     public static bool hitRecently = false;
 
-    public float hitRecoveryTime = 0.2f; 
+    public float hitRecoveryTime = 0.2f;
+
+    private AudioSource playerAudio;
+
+    public AudioClip playerHitSound;
+
+    public AudioClip playerDeathSound;
+
 
     void Start ()
     {
+        playerAudio = GetComponent<AudioSource>();
+
         rb = GetComponent<Rigidbody2D>();
 
         if (rb == null)
@@ -42,7 +51,10 @@ public class PlayerHealth : MonoBehaviour
 
         hitRecently = true;
 
-        StartCoroutine(RecoverFromHit());
+        if (gameObject.activeSelf)
+        {
+            StartCoroutine(RecoverFromHit());
+        }
 
         Vector2 direction = transform.position - enemyPosition;
 
@@ -70,12 +82,23 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+
+        else
+        {
+            playerAudio.PlayOneShot(playerHitSound);
+        }
     }
 
     public void Die()
     {
         ScoreManager.gameOver = true;
 
+        GameObject deathEffect = Instantiate(playerDeathEffect, transform.position, Quaternion.identity);
+
+        Destroy(deathEffect, 2f); 
+
         gameObject.SetActive(false);
+
+        playerAudio.PlayOneShot(playerDeathSound);
     }
 }

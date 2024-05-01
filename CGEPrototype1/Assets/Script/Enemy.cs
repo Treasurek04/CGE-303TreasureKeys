@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -10,10 +11,12 @@ public class Enemy : MonoBehaviour
 
     private DisplayBar healthBar;
 
-    public int damage = 10; 
+    public int damage = 10;
 
+   
     private void Start()
     {
+
         healthBar = GetComponentInChildren<DisplayBar>(); 
 
         if(healthBar == null)
@@ -31,17 +34,19 @@ public class Enemy : MonoBehaviour
 
         healthBar.SetValue(health);
 
-        if (health <0)
+        if (health <=0)
         {
             Die(); 
         }
+      
     }
    
     void Die()
     {
         Instantiate(deathEffect, transform.position, Quaternion.identity);
 
-        Destroy(gameObject); 
+        Destroy(gameObject);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

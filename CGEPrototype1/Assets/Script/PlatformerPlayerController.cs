@@ -79,8 +79,6 @@ public class PlatformerPlayerController : MonoBehaviour
 
     void Jump()
     {
-        if (!hasJumped && isGrounded)
-        {
             // Apply jump force
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
 
@@ -89,7 +87,6 @@ public class PlatformerPlayerController : MonoBehaviour
             {
                 playerAudio.PlayOneShot(jumpSound, 1.0f); // Play jump sound with volume 1.0f
             }
-            hasJumped = true; 
-        }
+          
     }
 }
